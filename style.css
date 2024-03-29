@@ -1,0 +1,28 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+#dealer-cards img {
+    width: 135px;
+    height: 195px;
+    margin: 5px;
+}
+
+#your-cards img {
+    width: 135px;
+    height: 195px;
+    margin: 5px;
+}
+
+#hit {
+    height: 50px;
+    width: 100px;
+    font-size: 25px;
+}
+
+#stand {
+    height: 50px;
+    width: 100px;
+    font-size: 25px;
+}
