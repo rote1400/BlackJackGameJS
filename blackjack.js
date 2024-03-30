@@ -55,6 +55,59 @@ function startGame() {
         dealerAceCount += checkAce(card);
         document.getElementById("dealer-cards").append(cardImg);
     }
+    console.log(dealerSum);
+
+    for (let i = 0; i < 2; i++) {
+        let cardImg = document.createElement("img");
+        let card = deck.pop();
+        cardImg.src = "./assets/cards/" + card + ".png";
+        yourSum += getValue(card);
+        yourAceCount += checkAce(card);
+        document.getElementById("your-cards").append(cardImg);
+    }
+    console.log(yourSum);
+    document.getElementById("hit").addEventListener("click", hit);
+    document.getElementById("stand").addEventListener("click", stand);
+}
+
+function hit() {
+    if (!canHit) {
+        return;
+    }
+
+    let cardImg = document.createElement("img");
+    let card = deck.pop();
+    cardImg.src = "./assets/cards/" + card + ".png";
+    yourSum += getValue(card);
+    yourAceCount += checkAce(card);
+    document.getElementById("your-cards").append(cardImg);
+    console.log(yourSum);
+
+    if (reduceAce(yourSum, yourAceCount) > 21) { // A, J, K -> 11 + 10 + 10
+        canHit = false;
+    }
+}
+
+function stand() {
+    canHit = false;
+    document.getElementById("hidden").src = "./assets/cards/" + hidden + ".png";
+
+    let message = "";
+    if (yourSum > 21) {
+        message = "You Lose!";
+    } else if (dealerSum > 21) {
+        message = "You Win!";
+    } else if (yourSum == dealerSum) {
+        message = "Tie!";
+    } else if (yourSum > dealerSum) {
+        message = "You Win!";
+    } else if (yourSum < dealerSum) {
+        message = "You Lose!";
+    }
+
+    document.getElementById("dealer-sum").innerText = dealerSum;
+    document.getElementById("your-sum").innerText = yourSum;
+    document.getElementById("results").innerText = message;
 }
 
 function getValue(card) {
@@ -77,4 +130,12 @@ function checkAce(card) {
     } else {
         return 0;
     }
+}
+
+function reduceAce(playerSum, playerAceCount) {
+    while (playerSum > 21 && playerAceCount > 0) {
+        playerSum -= 10;
+        playerAceCount--;
+    }
+    return playerSum;
 }
