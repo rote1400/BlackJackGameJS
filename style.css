@@ -34,6 +34,12 @@ h2, #results {
     font-size: 25px;
 }
 
+#new {
+    height: 50px;
+    width: 100px;
+    font-size: 25px;
+}
+
 #results {
     font-size: 25px;
 }

@@ -68,6 +68,7 @@ function startGame() {
     console.log(yourSum);
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stand").addEventListener("click", stand);
+    document.getElementById("new").addEventListener("click", newGame);
 }
 
 function hit() {
@@ -108,6 +109,10 @@ function stand() {
     document.getElementById("dealer-sum").innerText = dealerSum;
     document.getElementById("your-sum").innerText = yourSum;
     document.getElementById("results").innerText = message;
+}
+
+function newGame() {
+    window.location.reload();
 }
 
 function getValue(card) {
